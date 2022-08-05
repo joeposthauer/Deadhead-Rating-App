@@ -1,5 +1,21 @@
 import React, { useState, useEffect } from "react";
 import hash from "./hash";
+import Playlists from "./Playlists.jsx";
+
+const AUTHORIZE = "https://accounts.spotify.com/authorize"
+const TOKEN = "https://accounts.spotify.com/api/token";
+const PLAYLISTS = "https://api.spotify.com/v1/me/playlists";
+const DEVICES = "https://api.spotify.com/v1/me/player/devices";
+const PLAY = "https://api.spotify.com/v1/me/player/play";
+const PAUSE = "https://api.spotify.com/v1/me/player/pause";
+const NEXT = "https://api.spotify.com/v1/me/player/next";
+const PREVIOUS = "https://api.spotify.com/v1/me/player/previous";
+const PLAYER = "https://api.spotify.com/v1/me/player";
+const TRACKS = "https://api.spotify.com/v1/playlists/{{PlaylistId}}/tracks";
+const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing";
+const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
+
+var fs = require('browserify-fs');
 
 
 export const authEndpoint = "https://accounts.spotify.com/authorize";
@@ -25,9 +41,10 @@ function App() {
     if (mToken) {
       setToken(mToken);
     }
+    
   })
-
-
+  console.log(token)
+  
 
   return (
     <div>
@@ -40,6 +57,11 @@ function App() {
         >
           Login to Spotify
         </a>
+      )}
+      {token && (
+        <Playlists
+          accessToken={token}
+        />
       )}
     </div>
   )
