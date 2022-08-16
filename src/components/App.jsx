@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import hash from "./hash";
 import Playlists from "./Playlists.jsx";
+import Algorithm from "./Algorithm";
 
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
 const TOKEN = "https://accounts.spotify.com/api/token";
@@ -41,10 +42,10 @@ function App() {
     if (mToken) {
       setToken(mToken);
     }
-    
+
   })
   console.log(token)
-  
+
 
   return (
     <div>
@@ -59,9 +60,13 @@ function App() {
         </a>
       )}
       {token && (
-        <Playlists
-          accessToken={token}
-        />
+        <div>
+          <Algorithm
+            accessToken={token}
+          />
+          
+          
+        </div>
       )}
     </div>
   )

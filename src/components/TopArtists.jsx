@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
 const TOKEN = "https://accounts.spotify.com/api/token";
@@ -13,14 +13,17 @@ const TRACKS = "https://api.spotify.com/v1/playlists/{{PlaylistId}}/tracks";
 const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing";
 const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
 const TOP = "https://api.spotify.com/v1/me/top/type";
+const TRACKFEAT = "https://api.spotify.com/v1/audio-features";
+const ALBUMTRACKS = "https://api.spotify.com/v1/albums/"
+const TOPTRACKS = "https://api.spotify.com/v1/me/top/tracks"
+const TOPARTISTS = "https://api.spotify.com/v1/me/top/artists"
 
-function Playlists(props) {
 
 
+function TopArtists (props) {
 
-    const [playlists, setPlaylists] = useState([]);
-
-    const playlistNames = [];
+    const [topartists, setTopartists] = useState([]);
+   
 
     function callApi(method, url, body, callback) {
         let xhr = new XMLHttpRequest();
@@ -31,16 +34,18 @@ function Playlists(props) {
         xhr.onload = callback;
     }
 
-    function handlePlaylistsResponse() {
+
+    function handleTopItems() {
         if (this.status == 200) {
             var data = JSON.parse(this.responseText);
             
-            console.log(data);
-            // removeAllItems( "playlists" );
-            // data.items.forEach(item => addPlaylist(item.name));
-            // document.getElementById('playlists').value=currentPlaylist;
-            data.items.forEach(item => addPlaylist(item.name));
-            setPlaylists(playlistNames);
+
+            var artists = []
+            data.items.forEach(artist => artists.push(artist.name));
+
+            props.onTopArtists(artists);
+            setTopartists(artists);
+            //topartists = artists;
         }
         else if (this.status == 401) {
             // refreshAccessToken()
@@ -49,41 +54,29 @@ function Playlists(props) {
             console.log(this.responseText);
             alert(this.responseText);
         }
-        
     }
 
-    function addPlaylist(item) {
-        playlistNames.push(item);
-    }
+    
 
+    if (topartists.length == 0) {
+        callApi("GET", TOPARTISTS, null, handleTopItems);
 
-    if (playlists.length == 0) {
-        callApi("GET", PLAYLISTS, null, handlePlaylistsResponse);
     } else {
         ;
     }
-    
+   
 
 
-
-
-    console.log(playlists);
 
     return (
         <div>
-            {console.log(playlists)}
-            {/* <button value="Get My Playlists" onClick={handlePlaylistsResponse}> Get Playlists</button> */}
-            <div>
-                Playlist Names
-                {playlists.map((playlist, index) => {
-                    return (
-                        <p key={index}>{playlist}</p>
-                    )
-                })}
-            </div>
-
+            {topartists.map((name, index) => {
+                return (
+                    <p key={index}>{name}</p>
+                )
+            })}
         </div>
     )
 }
 
-export default Playlists;
+export default TopArtists;
