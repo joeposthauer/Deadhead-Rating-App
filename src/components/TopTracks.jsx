@@ -40,7 +40,10 @@ function TopTracks (props) {
             var data = JSON.parse(this.responseText);
             
             var tracks = []
-            data.items.forEach(track => tracks.push([track.name, track.artists]));
+            data.items.forEach(track => tracks.push({
+                name: track.name,
+                artists: track.artists
+            }));
 
             props.onTopTracks(tracks);
             setTopTracks(tracks);
