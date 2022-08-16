@@ -71,9 +71,13 @@ function TopTracks (props) {
 
     return (
         <div>
-            {topTracks.map((name, index) => {
+            {topTracks.map((names, index) => {
                 return (
-                    <p key={index}>{name}</p>
+                    <div key={index}>
+                        <h2>name: {names.name}</h2>
+                        <h2>artists: {names.artists[0].name}</h2>
+                        <hr />
+                    </div>
                 )
             })}
         </div>

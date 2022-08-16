@@ -8,6 +8,7 @@ function Algorithm (props) {
     var topTracks = [];
     var topArtists = [];
     var gdIndex = -1;
+    var relatedArtists = [];
 
     function handleTopArtists(artists) {
         topArtists=artists;
@@ -27,22 +28,24 @@ function Algorithm (props) {
         xhr.onload = callback;
     }
 
+    //Determines where the grateful dead fall in their top artists list
     function gdRanking(){
         topArtists.forEach((artist,index) => {
-            if (artist == "Grateful Dead") {
+            if (artist === "Grateful Dead") {
+                console.log("in here");
                 gdIndex = index;
             }
+            console.log(gdIndex);
         })
     }
 
 
-    //return proper percentage from dead within top artists
+    //Returns proper percentage (with a total weight of 40) of GD within top artists
     function gdRankingPercentage(ranking) {
         //if dead not w/in top 20 artists, they get no points
         if (ranking == -1) {
             return 0;
         } 
-
 
         return (0.4-(ranking*2));
     }
@@ -52,12 +55,13 @@ function Algorithm (props) {
         var fracTotal = 0;
 
         topTracks.forEach((song, index) => {
-            console.log(song);
+            console.log(song.name);
         });
     }
 
+    //console.log(gdRankingPercentage(gdRanking()));
     gdSongsPercentage();
-
+    gdRanking();
 
     return (
         <div>
@@ -70,6 +74,9 @@ function Algorithm (props) {
             accessToken={props.accessToken}
             onTopArtists={handleTopArtists}
           />
+          <p>
+              gdIndex: {gdIndex}
+          </p>
         </div>
     )
 

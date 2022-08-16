@@ -64,8 +64,6 @@ function TopArtists (props) {
     } else {
         ;
     }
-   
-
 
 
     return (
