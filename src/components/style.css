@@ -1,0 +1,35 @@
+/*body {
+
+}
+
+img {
+
+}
+
+td {
+    padding: 1rem;
+}
+
+table {
+    color: white;
+}
+*/
+
+/*Style for home page (pre log in)*/
+.title {
+    text-align: center;
+    text-decoration: underline;
+    padding-bottom: 0;
+    color: red;
+}
+
+.background {
+    width: 100%;
+}
+
+.log-in-button {
+    text-align: center;
+    color:aqua;
+}
+
+/*Style for results page*/
