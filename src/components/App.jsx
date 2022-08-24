@@ -52,7 +52,9 @@ function App() {
     
     <div>
       <link rel="stylesheet" href="style.css"/>
-      <div class="loginPageDefaults">
+      <div class= "genericPresets">
+      Welcome to DeadHead Calculator! Login with your spotify to see your results: 
+      <div class="log-in-button">
       {!token && (
         <a
           className="btn btn--loginApp-link"
@@ -63,7 +65,11 @@ function App() {
           Login to Spotify
         </a>
       )}
+      
       </div>
+       
+      </div>
+     
       
       <div class = "resultsPageDefaults">
       {token && (
@@ -71,8 +77,6 @@ function App() {
           <Algorithm
             accessToken={token}
           />
-          
-          
         </div>
       )}
       </div>

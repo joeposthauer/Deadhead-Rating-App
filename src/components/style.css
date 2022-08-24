@@ -15,6 +15,16 @@ table {
 }
 */
 
+.genericPresets {
+    text-align: center;
+    padding-top: 10%;
+    font-family: fantasy;
+    font-weight: bold;
+    font-size: 24pt;
+    background-image: url("tiedye3.jpg");
+    background-size: cover;
+    height:100%;
+}
 /*Style for home page (pre log in)*/
 .title {
     text-align: center;
@@ -28,18 +38,26 @@ table {
 }
 
 .log-in-button {
+    padding-top: 2rem;
     text-align: center;
-    color:aqua;
+    color:rgb(255, 0, 195);
+    font-size: 16pt;
 }
 
-.loginPageDefaults {
-    text-align: center;
-    color:aqua;
+/*I want the dancing bears to line the bottom of the entire home page*/
+.dancingbears img{
+    height: 20rem;
+    width: 20rem;
+    padding-top: 20%;
+    padding-right: 50%;
 }
+
 
 /*Style for results page*/
 
 .resultsPageDefaults{
     text-align: center;
-    color: purple;
+    color: rgb(255, 253, 255);
+    background-image: url("trippy.gif");
+    background-size: contain;
 }
