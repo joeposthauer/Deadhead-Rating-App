@@ -32,4 +32,14 @@ table {
     color:aqua;
 }
 
+.loginPageDefaults {
+    text-align: center;
+    color:aqua;
+}
+
 /*Style for results page*/
+
+.resultsPageDefaults{
+    text-align: center;
+    color: purple;
+}

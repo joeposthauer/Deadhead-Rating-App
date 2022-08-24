@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import hash from "./hash";
 import Playlists from "./Playlists.jsx";
 import Algorithm from "./Algorithm";
+import './style.css';
 
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
 const TOKEN = "https://accounts.spotify.com/api/token";
@@ -48,7 +49,10 @@ function App() {
 
 
   return (
+    
     <div>
+      <link rel="stylesheet" href="style.css"/>
+      <div class="loginPageDefaults">
       {!token && (
         <a
           className="btn btn--loginApp-link"
@@ -59,6 +63,9 @@ function App() {
           Login to Spotify
         </a>
       )}
+      </div>
+      
+      <div class = "resultsPageDefaults">
       {token && (
         <div>
           <Algorithm
@@ -68,6 +75,8 @@ function App() {
           
         </div>
       )}
+      </div>
+      
     </div>
   )
 }

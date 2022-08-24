@@ -98,12 +98,12 @@ function Algorithm (props) {
 
 
     //Total Up their score
-    function addComponents() {
-        //figure out multiplier for each component and add them all up 
-        //score= 40% GD ranking, 40% GD songs, 10% Related artists ranking, 10% songs by related
-        total = gdRankingPercentage(gdRanking())+GD_SONGS_MULT*gdSongsPercentage()+REL_ARTISTS_MULT*topRelatedArtists()+REL_SONGS_MULT*songsByRelated;
-        return total;
-    }
+    // function addComponents() {
+    //     //figure out multiplier for each component and add them all up 
+    //     //score= 40% GD ranking, 40% GD songs, 10% Related artists ranking, 10% songs by related
+    //     total = gdRankingPercentage(gdRanking())+GD_SONGS_MULT*gdSongsPercentage()+REL_ARTISTS_MULT*topRelatedArtists()+REL_SONGS_MULT*songsByRelated;
+    //     return total;
+    // }
     
     //console.log(gdRankingPercentage(gdRanking()));
     gdSongsPercentage();
