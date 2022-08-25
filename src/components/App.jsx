@@ -53,7 +53,8 @@ function App() {
     <div>
       <link rel="stylesheet" href="style.css"/>
       <div class= "genericPresets">
-      Welcome to DeadHead Calculator! Login with your spotify to see your results: 
+      Welcome to DeadHead Calculator! 
+      Login with your spotify to see your results: 
       <div class="log-in-button">
       {!token && (
         <a

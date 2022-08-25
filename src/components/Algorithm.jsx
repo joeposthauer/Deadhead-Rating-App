@@ -49,7 +49,6 @@ function Algorithm (props) {
         if (ranking == -1) {
             return 0;
         } 
-
         return (0.4-(ranking*2));
     }
 
@@ -58,7 +57,7 @@ function Algorithm (props) {
     function gdSongsPercentage() {
         //keep track of summated song inverses
         var fracTotal = 0;
-        console.log(topTracks.length); //RETURNS 0 WHICH MEANING DOESNT WAIT FOR ARRAYS TO FILL!!!!
+        console.log(topTracks.length);              //RETURNS 0 WHICH MEANS DOESNT WAIT FOR ARRAYS TO FILL!!!!
         topTracks.forEach((song, index) => {
             if (song.artist[0].name == "Grateful Dead") {
                 fracTotal+=(1/index);
@@ -105,9 +104,11 @@ function Algorithm (props) {
         return total;
     }
     
-    //console.log(gdRankingPercentage(gdRanking()));
-    console.log(gdSongsPercentage());
-    gdRanking();
+
+    /*  CALLING THE FUNCTIONS */
+    console.log(gdSongsPercentage());       //should log the fractional number of gd songs in top tracks currently prints 0 (yikes)
+    gdRanking();                            //CALLING THE FUNCTION --> gdIndex should be right now
+
 
     return (
         <div>
@@ -120,8 +121,10 @@ function Algorithm (props) {
             accessToken={props.accessToken}
             onTopArtists={handleTopArtists}
           />
+          
+          
           <p>
-              gdIndex: {gdIndex}
+            gdIndex: {gdIndex} 
           </p>
         </div>
     )
