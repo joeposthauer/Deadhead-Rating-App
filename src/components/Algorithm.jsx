@@ -100,18 +100,8 @@ function Algorithm (props) {
         // return fracTotal;
         songPercentage+=fracTotal;
     }
-
-
-    //Total Up their score
-    function addComponents() {
-        //figure out multiplier for each component and add them all up 
-        //score= 40% GD ranking, 40% GD songs, 10% Related artists ranking, 10% songs by related
-        var total = gdRankingPercentage(gdRanking())+GD_SONGS_MULT*gdSongsPercentage()+REL_ARTISTS_MULT*topRelatedArtists()+REL_SONGS_MULT*songsByRelated;
-        return total;
-    }
-
     
-
+    //sets top tracks and calls all necessary track functions
     function handleTopTracks(tracks) {
         console.log(tracks);
         topTracks=tracks;
@@ -123,6 +113,8 @@ function Algorithm (props) {
         }
     }
 
+
+    //sets top artists and calls all necessary artist functions
     function handleTopArtists(artists) {
         topArtists=artists;
         gdRanking();
