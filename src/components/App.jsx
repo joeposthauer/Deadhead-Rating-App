@@ -49,39 +49,40 @@ function App() {
 
 
   return (
-    
+
     <div>
-      <link rel="stylesheet" href="style.css"/>
-      <div class= "genericPresets">
-      Welcome to DeadHead Calculator! 
-      Login with your spotify to see your results: 
-      <div class="log-in-button">
-      {!token && (
-        <a
-          className="btn btn--loginApp-link"
-          href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-            "%20"
-          )}&response_type=token&show_dialog=true`}
-        >
-          Login to Spotify
-        </a>
-      )}
-      
+      <link rel="stylesheet" href="style.css" />
+
+        <div className="log-in-button">
+          {!token && (
+            <div className="genericPresets">
+              <h1>Welcome to DeadHead Calculator!</h1>
+              <p>Login with your spotify to see your results:</p>
+              <a
+                className="btn btn--loginApp-link"
+                href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
+                  "%20"
+                )}&response_type=token&show_dialog=true`}
+              >
+                Login to Spotify
+              </a>
+            </div>
+
+          )}
+
       </div>
-       
+
+
+      <div class="resultsPageDefaults">
+        {token && (
+          <div>
+            <Algorithm
+              accessToken={token}
+            />
+          </div>
+        )}
       </div>
-     
-      
-      <div class = "resultsPageDefaults">
-      {token && (
-        <div>
-          <Algorithm
-            accessToken={token}
-          />
-        </div>
-      )}
-      </div>
-      
+
     </div>
   )
 }

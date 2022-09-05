@@ -4,23 +4,21 @@ import TopArtists from "./TopArtists";
 
 function Algorithm (props) {
 
-    var totalPercentage = 0;
+    const [totalPercentage, setTotal] = useState(0);
+
     var topTracks = [];
     var topArtists = [];
     var gdIndex = -1;
+    var artistPercentage = 0;
+    var songPercentage = 0;
     var relatedArtists = []; 
+    var hasArtists = false;
+    var hasTracks = false;
     const GD_SONGS_MULT = 8.51; //40/(sum of 1/x from 1 to 51)
     const REL_SONGS_MULT = 2.74; //10/(sum of 1/x from 1 to 51)
     const REL_ARTISTS_MULT = 2.213;//10/(sum of 1/x from 1 to 21)
 
-    function handleTopArtists(artists) {
-        topArtists=artists;
-    }
-
-    function handleTopTracks(tracks) {
-        console.log(tracks);
-        topTracks=tracks;
-    }
+    
 
     function callApi(method, url, body, callback) {
         let xhr = new XMLHttpRequest();
@@ -35,11 +33,13 @@ function Algorithm (props) {
     //Determines where the grateful dead fall in their top artists list
     function gdRanking(){
         topArtists.forEach((artist,index) => {
+            console.log(artist);
             if (artist === "Grateful Dead") {
                 console.log("in here");
                 gdIndex = index;
             }
             console.log(gdIndex);
+            return gdIndex;
         })
     }
 
@@ -49,7 +49,10 @@ function Algorithm (props) {
         if (ranking == -1) {
             return 0;
         } 
-        return (0.4-(ranking*2));
+        console.log(ranking);
+        var x = 0.4 - (ranking*0.02);
+        console.log(x);
+        artistPercentage+=x;
     }
 
 
@@ -57,14 +60,15 @@ function Algorithm (props) {
     function gdSongsPercentage() {
         //keep track of summated song inverses
         var fracTotal = 0;
-        console.log(topTracks.length);              //RETURNS 0 WHICH MEANS DOESNT WAIT FOR ARRAYS TO FILL!!!!
+        console.log(topTracks.length);              
         topTracks.forEach((song, index) => {
-            if (song.artist[0].name == "Grateful Dead") {
+            if (song.artists[0].name == "Grateful Dead") {
                 fracTotal+=(1/index);
                 console.log(song.name); //to check if correct
             }
         });
-        return fracTotal;
+        // return fracTotal;
+        songPercentage+=fracTotal;
     }
 
 
@@ -76,8 +80,9 @@ function Algorithm (props) {
                 fracTotal += (1/index);
             }
 
-            return fracTotal;
+            // return fracTotal;
          });
+         artistPercentage+=fracTotal;
     }
 
     
@@ -87,12 +92,13 @@ function Algorithm (props) {
         var fracTotal = 0;
 
         topTracks.forEach((song, index) => {
-            if (song.artist[0].name in relatedArtists) {
+            if (song.artists[0].name in relatedArtists) {
                 fracTotal+=(1/index);
                 console.log(song.artist[0].name); //to check if correct
             }
         });
-        return fracTotal;
+        // return fracTotal;
+        songPercentage+=fracTotal;
     }
 
 
@@ -103,13 +109,33 @@ function Algorithm (props) {
         var total = gdRankingPercentage(gdRanking())+GD_SONGS_MULT*gdSongsPercentage()+REL_ARTISTS_MULT*topRelatedArtists()+REL_SONGS_MULT*songsByRelated;
         return total;
     }
+
     
 
-    /*  CALLING THE FUNCTIONS */
-    console.log(gdSongsPercentage());       //should log the fractional number of gd songs in top tracks currently prints 0 (yikes)
-    gdRanking();                            //CALLING THE FUNCTION --> gdIndex should be right now
+    function handleTopTracks(tracks) {
+        console.log(tracks);
+        topTracks=tracks;
+        gdSongsPercentage();
+        songsByRelated();
+        hasTracks = true;
+        if (hasTracks && hasArtists) {
+            setTotal(parseInt(100*(artistPercentage+songPercentage)));
+        }
+    }
 
-
+    function handleTopArtists(artists) {
+        topArtists=artists;
+        gdRanking();
+        gdRankingPercentage(gdIndex);
+        topRelatedArtists();
+        console.log(artistPercentage);
+        hasArtists = true;
+        if (hasTracks && hasArtists) {
+            setTotal(parseInt(100*(artistPercentage+songPercentage)));
+        }
+    }
+    
+    
     return (
         <div>
             <TopTracks
@@ -124,7 +150,7 @@ function Algorithm (props) {
           
           
           <p>
-            gdIndex: {gdIndex} 
+            gdIndex: {totalPercentage}%
           </p>
         </div>
     )
