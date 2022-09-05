@@ -71,15 +71,7 @@ function TopTracks (props) {
 
     return (
         <div>
-            {topTracks.map((names, index) => {
-                return (
-                    <div key={index}>
-                        <h2>name: {names.name}</h2>
-                        <h2>artists: {names.artists[0].name}</h2>
-                        <hr />
-                    </div>
-                )
-            })}
+            Gillian
         </div>
     )
 }

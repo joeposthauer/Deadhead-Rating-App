@@ -68,11 +68,7 @@ function TopArtists (props) {
 
     return (
         <div>
-            {topartists.map((name, index) => {
-                return (
-                    <p key={index}>{name}</p>
-                )
-            })}
+            ur gay
         </div>
     )
 }
