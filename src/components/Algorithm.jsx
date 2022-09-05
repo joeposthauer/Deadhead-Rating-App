@@ -56,6 +56,8 @@ function Algorithm (props) {
         var x = 0.4 - (ranking*0.02);
         //console.log(x);
         artistPercentage+=x;
+        console.log("artist percentage after adding in GD "+artistPercentage);
+
     }
 
 
@@ -63,17 +65,17 @@ function Algorithm (props) {
     function gdSongsPercentage() {
         //keep track of summated song inverses
         var fracTotal = 0;
-        console.log(topTracks.length);              
+        //console.log(topTracks.length);              
         topTracks.forEach((song, index) => {
-            console.log(song.name); //to check if correct
+            //console.log(song.name); //to check if correct
             if (song.artists[0].name == "Grateful Dead") {
                 fracTotal+=(1/index);
-                console.log(song.name); //to check if correct
+                console.log("GD SONG: " +song.name); //to check if correct
             }
         });
         // return fracTotal;
         songPercentage+=(fracTotal*GD_SONGS_MULT);
-        console.log(songPercentage);
+        console.log("song percentage after adding in GD songs "+songPercentage);
     }
 
 
@@ -87,9 +89,11 @@ function Algorithm (props) {
                     console.log("in inner toprelatedartists");
                 }
             }
-            console.log(fracTotal);
          });
+         console.log(fracTotal);
          artistPercentage+=(fracTotal*REL_ARTISTS_MULT);
+         console.log("artist percentage after adding in related "+artistPercentage);
+
     }
 
     
@@ -97,18 +101,20 @@ function Algorithm (props) {
     function songsByRelated() {
         //keep track of summated song inverses
         var fracTotal = 0;
-
+        //console.log(topTracks);
         topTracks.forEach((song, index) => {
             for(var i=0;i<relatedArtists.length;i++) {
-                console.log(song.artists[0].name);
+                //console.log(song.artists[0].name);
                 if (song.artists[0].name === relatedArtists[i]) {
-                    fracTotal+=(1/index);
+                    fracTotal+=(1/(index+1));    //since index starts at 0
                     console.log(song.artists[0].name); //to check if correct
                 }
             }
         });
-        // return fracTotal;
+         console.log(fracTotal);
         songPercentage+=(fracTotal*REL_SONGS_MULT);
+        console.log("song percentage after adding in related songs "+ songPercentage);
+
     }
     
     function handleRelatedArtists (artists){
@@ -117,14 +123,14 @@ function Algorithm (props) {
     }
     //sets top tracks and calls all necessary track functions
     function handleTopTracks(tracks) {
-        console.log(tracks);
+        //console.log(tracks);
         topTracks=tracks;
         gdSongsPercentage();
         //checkRelArtists();
         songsByRelated();
         hasTracks = true;
         if (hasTracks && hasArtists) {
-            setTotal(parseInt(100*(artistPercentage+songPercentage)));
+            setTotal((100*(artistPercentage+songPercentage)));
         }
     }
 
@@ -138,7 +144,7 @@ function Algorithm (props) {
         console.log(artistPercentage);
         hasArtists = true;
         if (hasTracks && hasArtists) {
-            setTotal(parseInt(100*(artistPercentage+songPercentage)));
+            setTotal(parseInt(100*((artistPercentage)+songPercentage)));
         }
     }
     

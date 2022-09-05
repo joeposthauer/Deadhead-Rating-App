@@ -15,7 +15,7 @@ const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
 const TOP = "https://api.spotify.com/v1/me/top/type";
 const TRACKFEAT = "https://api.spotify.com/v1/audio-features";
 const ALBUMTRACKS = "https://api.spotify.com/v1/albums/"
-const TOPTRACKS = "https://api.spotify.com/v1/me/top/tracks"
+const TOPTRACKS = "https://api.spotify.com/v1/me/top/tracks?limit=50"      //SHOULD WE DO LONG TERM DATA?? (currently medium (6 months))
 const TOPARTISTS = "https://api.spotify.com/v1/me/top/artists"
 
 
