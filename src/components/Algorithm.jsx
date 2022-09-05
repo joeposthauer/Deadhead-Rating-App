@@ -15,9 +15,9 @@ function Algorithm (props) {
     var relatedArtists = []; 
     var hasArtists = false;
     var hasTracks = false;
-    const GD_SONGS_MULT = 8.51; //40/(sum of 1/x from 1 to 51)
-    const REL_SONGS_MULT = 2.74; //10/(sum of 1/x from 1 to 51)
-    const REL_ARTISTS_MULT = 2.213;//10/(sum of 1/x from 1 to 21)
+    const GD_SONGS_MULT = 0.0664; //40/(sum of 1/x from 1 to 51)
+    const REL_SONGS_MULT = 0.0332; //10/(sum of 1/x from 1 to 51)
+    const REL_ARTISTS_MULT = 0.0411;//10/(sum of 1/x from 1 to 21)
     const RELARTISTS = "https://api.spotify.com/v1/artists/4TMHGUX5WI7OOm53PqSDAT/related-artists";
     
 
