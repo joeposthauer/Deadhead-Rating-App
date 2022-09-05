@@ -59,5 +59,7 @@ table {
     text-align: center;
     color: rgb(255, 253, 255);
     background-image: url("trippy.gif");
-    background-size: contain;
+    background-size:cover;
+    background-position:center;
+    height: 100%;
 }
