@@ -1,4 +1,4 @@
-#Description
+# Description
 
 Simple react app that utilizes the Spotify API to calculate how much of a fan someone is of the Grateful Dead. 
 
