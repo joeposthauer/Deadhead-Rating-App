@@ -1,3 +1,7 @@
+#Description
+
+Simple react app that utilizes the Spotify API to calculate how much of a fan someone is of the Grateful Dead. 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
